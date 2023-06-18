@@ -3,12 +3,14 @@ import Comments from '../Components/Comments';
 
 const RentDetails = () => {
     return (
-        <div className='border border-gray-300 mx-4'>
+        <div className='  max-w-[1480px] mx-auto border-gray-300'>
             <div className='px-4'>
-                <h2 className='text-center md:text-2xl font-bold my-8 '>Details About Home</h2>
+                <div className='pt-10 pb-8'>
+                    <h2 className='text-center md:text-2xl font-bold my-8 '>Details About Home</h2>
+                </div>
                 <div className='flex lg:flex-row flex-col gap-3'>
                     <div className=' w-full lg:w-1/2'>
-                        <div>                           
+                        <div>
                             <div className='p-3 rounded-lg border hover:border-gray-500'>
                                 <img src="https://homeandhousereviews.com/wp-content/uploads/2020/03/Cheap-One-Bedroom-Apartments-For-Rent-Near-Me-1536x1024.jpg" alt="" />
                             </div>
@@ -55,7 +57,7 @@ const RentDetails = () => {
                                     <p>Golam Morshed</p>
                                     <p>mdgolammorshed0099@gmail.com</p>
                                     <p>+8801991394353</p>
-                                    <div className='flex gap-4'>                                        
+                                    <div className='flex gap-4'>
                                         <p className='text-green-800'>Message</p>
                                         <p className='text-green-800'>Send proposal</p>
                                     </div>
