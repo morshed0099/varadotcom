@@ -15,25 +15,25 @@ const LoginFrom = ({ type }) => {
                 <div className='flex justify-center flex-col gap-4'>
                     <h2 className='text-center text-3xl font-bold text-white'>Welcome to Signup for {type}</h2>
                     <div>
-                        <label className='text-1xl font bold text-white'>Name:</label>
+                        <lebel className='text-1xl font bold text-white'>Name:</lebel>
                     </div>
                     <div>
                         <input className='w-full' type="text" name='name' placeholder='Enter Your Name' />
                     </div>
                     <div>
-                        <label className='text-1xl font bold text-white'>Email:</label>
+                        <lebel className='text-1xl font bold text-white'>Email:</lebel>
                     </div>
                     <div>
                         <input className='w-full' type="Email" name='email' placeholder='Enter Your Email' />
                     </div>
                     <div>
-                        <label className='text-1xl font bold text-white'>Password:</label>
+                        <lebel className='text-1xl font bold text-white'>Password:</lebel>
                     </div>
                     <div>
                         <input className='w-full' type="Pssword" name='password' />
                     </div>
                     <div>
-                        <button  className='px-20 w-full py-3 bg-green-600 hover:bg-green-800 duration-500 ease-out text-white'>
+                        <button className='px-20 w-full py-3 bg-green-600 hover:bg-green-800 duration-500 ease-out text-white'>
                             Signp up
                         </button>
                     </div>

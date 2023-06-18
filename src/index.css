@@ -18,39 +18,9 @@ code {
 }
 
 
-
-.slick-active .active-li {
-  background-color: green !important;
-  color: white !important;
-
-}
-.slick-slider{
-  display: block;
-}
-.slick-slider {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 8px !important;
-  align-items: center !important;
-}
-
 .slick-dots {
-  position: sticky !important;
-  top: 0 !important;
-}
-.text-shadow{
-  text-shadow: 0px 0px 40px  red;
-}
-@media only screen and (max-width: 600px) { 
-  .li {
-   display: flex !important;
-   flex-direction: row !important;
-   margin-top: 10px;
-   justify-content: center;
-
-  }
- .slick-slider {
-  display: block !important;
-}
-
+  position: absolute !important;
+  top:90px !important;
+  height: 100px !important;
+ 
 }

@@ -23,8 +23,8 @@ const Header = () => {
         }
     }
     return (
-        <div style={{ zIndex: "99" }} className='bg-white  sticky top-0'>
-            <div id='navHeader' className='px-4  w-full   bg-transparent'>
+        <div style={{ zIndex: "99" }} className='bg-white sticky top-0'>
+            <div id='navHeader' className='px-4  w-full absolute bg-transparent'>
                 <div className='p-2 '>
                     <nav className='flex justify-between items-center'>
                         <div>
@@ -47,7 +47,7 @@ const Header = () => {
                         </div>
                     </nav>
                 </div>
-                <div className='relative w-full  bg-opacity-75 z-50'>
+                <div className='relative w-full  bg-opacity-75 z-40'>
                     <div className={`lg:hidden mx-auto ${open ? "flex flex-col w-full items-center duration-500 absolute  ease-in gap-2 mt-0 p-4 bg-gray-100 mx-auto " : "absolute flex flex-col duration-700 ease-in w-full items-center justify-center mt-[-300px]"}`}>
                         <NavLink className='w-full bg-gray-300 text-center  text-gray-950 duration-700 transition  rounded-2xl' to='/'>Home</NavLink>
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950 ' to='/job'>Job</NavLink>

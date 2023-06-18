@@ -13,7 +13,7 @@ import TrustedDeveloper from '../Components/TrustedDeveloper';
 const Home = () => {
     return (
         <div className=''>
-            <div className='mx-auto mb-30 px-4'>
+            <div className='mx-auto mb-30 '>
                 <Bannar />
             </div>
             <div className='max-w-[1480px] mx-auto'>
