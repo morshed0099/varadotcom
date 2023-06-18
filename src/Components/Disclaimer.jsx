@@ -9,9 +9,9 @@ const Disclaimer = () => {
                 <div className='relative my-6'>
 
                     <div className='relative'>
-                        <img className='h-[620px]  lg:h-[300px] w-full' src="https://homeandhousereviews.com/wp-content/uploads/2020/03/Cheap-One-Bedroom-Apartments-For-Rent-Near-Me-1536x1024.jpg" alt="" />
+                        <img className='h-[700px]  lg:h-[300px] w-full' src="https://homeandhousereviews.com/wp-content/uploads/2020/03/Cheap-One-Bedroom-Apartments-For-Rent-Near-Me-1536x1024.jpg" alt="" />
                     </div>
-                    <div className='w-full h-full top-0 absolute bg-white bg-opacity-75'>
+                    <div className='w-full h-full top-0 absolute bg-white bg-opacity-50'>
 
                     </div>
                     <h2 className=' absolute top-6 text-2xl font-bold text-gray-950 ml-4'>Disclaimar </h2>
@@ -38,8 +38,6 @@ const Disclaimer = () => {
                             <p className='text-justify'>Don't Disturb any body who can lead their own life .Keep cleam and peachfull.We respect evebody and every religon </p>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

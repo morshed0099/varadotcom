@@ -17,9 +17,9 @@ const Home = () => {
                 <Bannar />
             </div>
             <div className='max-w-[1480px] mx-auto'>
-                <h1 className='text-6xl font-bold text-center my-12 p-4'>Select Your Sweet Home</h1>
+                <h1 className='text-center text-6xl font-bold  pt-8  pb-4'>Select Your Sweet Home</h1>
                 <div className='px-4 mt-6 z-40 sticky top-20 '>
-                    <div className='flex justify-end items-center  gap-4'>
+                    <div className='flex justify-end items-center gap-4'>
                         <SearchBar />
                         <Location />
                         <Calender />
