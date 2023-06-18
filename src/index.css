@@ -24,12 +24,14 @@ code {
   color: white !important;
 
 }
-
+.slick-slider{
+  display: block;
+}
 .slick-slider {
   display: flex !important;
-  flex-direction: row-reverse !important;
-  gap: 8px;
-  align-items: center;
+  flex-direction: row !important;
+  gap: 8px !important;
+  align-items: center !important;
 }
 
 .slick-dots {

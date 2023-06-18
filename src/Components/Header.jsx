@@ -11,13 +11,13 @@ const Header = () => {
 
     function scrollFunction() {
         if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-            document.getElementById("navHeader").style.backgroundColor = "white";           
+            document.getElementById("navHeader").style.backgroundColor = "white";
 
             document.getElementById("logo").style.color = "green";
             document.getElementById("slogan").style.color = "black";
 
         } else {
-            document.getElementById("navHeader").style.backgroundColor = "";       
+            document.getElementById("navHeader").style.backgroundColor = "";
             document.getElementById("logo").style.color = "";
             document.getElementById("slogan").style.color = "";
         }
@@ -43,6 +43,7 @@ const Header = () => {
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/job'>Job</NavLink>
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/news'>News</NavLink>
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/developer'>Developer</NavLink>
+                            <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
                         </div>
                     </nav>
                 </div>
@@ -52,6 +53,7 @@ const Header = () => {
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950 ' to='/job'>Job</NavLink>
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/news'>News</NavLink>
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/developer'>Developer</NavLink>
+                        <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
                     </div>
                 </div>
             </div>
