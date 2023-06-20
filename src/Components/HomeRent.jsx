@@ -26,9 +26,9 @@ const HomeRent = () => {
                             <div>
                                 <h6 className='text-gray-500'>  Owner : Morshed</h6>
 
-                                <button className='text-green-600 hover:text-green-800'>
+                               <Link to={`/profile/${id}`}> <button className='text-green-600 hover:text-green-800'>
                                     view profile
-                                </button>
+                                </button></Link>
                             </div>
 
                         </div>
