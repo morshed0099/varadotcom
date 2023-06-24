@@ -12,12 +12,14 @@ import AllSeller from './Pages/AllSeller';
 import Dasborad from './Pages/Dasborad';
 import AllBuyer from './Pages/AllBuyer';
 import MyFavourite from './Components/MyFavourite';
+import ErrorPage from './Components/ErrorPage';
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
+        errorElement:<ErrorPage />,
         children: [
             {
                 path: '/',
