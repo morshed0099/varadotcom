@@ -5,6 +5,13 @@ import Home from './Pages/Home';
 import RentDetails from './Pages/RentDetails';
 import Login from './Pages/Login';
 import UserProfile from './Pages/UserProfile';
+import DasboradLayout from './DasboradLayout';
+import AddPorduct from './Pages/AddPorduct';
+import MyaddedProduct from './Pages/MyaddedProduct';
+import AllSeller from './Pages/AllSeller';
+import Dasborad from './Pages/Dasborad';
+import AllBuyer from './Pages/AllBuyer';
+import MyFavourite from './Components/MyFavourite';
 
 
 export const router = createBrowserRouter([
@@ -28,11 +35,41 @@ export const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path:'/profile/:id',
-                loader: async({params})=>{
+                path: '/profile/:id',
+                loader: async ({ params }) => {
                     return fetch(`http//:localhost:3000/${params.id}`)
                 },
-                element:<UserProfile />
+                element: <UserProfile />
+            }
+        ]
+    },
+    {
+        path: "/dashboard",
+        element: <DasboradLayout />,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dasborad />
+            },
+            {
+                path: "/dashboard/addproduct",
+                element: <AddPorduct />
+            },
+            {
+                path: "/dashboard/myaddedproduct",
+                element: <MyaddedProduct />
+            },
+            {
+                path: "/dashboard/allseller",
+                element: <AllSeller />
+            },
+            {
+                path: "/dashboard/allbuyer",
+                element: <AllBuyer />
+            },
+            {
+                path: '/dashboard/myfavourite',
+                element: <MyFavourite />
             }
         ]
     }

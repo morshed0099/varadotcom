@@ -1,35 +1,19 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { FcMenu } from 'react-icons/fc';
 import { IoMdClose } from 'react-icons/io';
+import { NavLink } from 'react-router-dom';
 
-const Header = () => {
-    const [open, setOpen] = useState(!true)
+const DasboardHeader = () => {
 
-
-    window.onscroll = function () { scrollFunction() };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-            document.getElementById("navHeader").style.backgroundColor = "white";
-
-            document.getElementById("logo").style.color = "green";
-            document.getElementById("slogan").style.color = "black";
-
-        } else {
-            document.getElementById("navHeader").style.backgroundColor = "";
-            document.getElementById("logo").style.color = "";
-            document.getElementById("slogan").style.color = "";
-        }
-    }
+    const [open, setOpen] = useState(false)
     return (
-        <div style={{ zIndex: "99" }} className='bg-white sticky top-0'>
-            <div id='navHeader' className='px-4  w-full absolute bg-transparent'>
+        <div style={{ zIndex: "99" }} className='bg-white '>
+            <div className='px-4  w-full  '>
                 <div className='p-2 '>
                     <nav className='flex justify-between items-center'>
                         <div>
-                            <h1 id='logo' className='text-red-600 text-2xl font-bold'>VaraDotCom</h1>
-                            <p id='slogan' className='lg:text-gray-200 text-green-800 font-semibold px-[4px]'>Catch Your Dream</p>
+                            <h1  className='text-red-600 text-2xl font-bold'>VaraDotCom</h1>
+                            <p  className='lg:text-gray-400 text-green-800 font-semibold px-[4px]'>Catch Your Dream</p>
                         </div>
                         <div className='block lg:hidden'>
                             <button onClick={() => setOpen(!open)}>
@@ -54,6 +38,7 @@ const Header = () => {
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950 ' to='/job'>Job</NavLink>
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/news'>News</NavLink>
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/developer'>Developer</NavLink>
+                        <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/dashboard'>Dasborad</NavLink>
                         <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
                     </div>
                 </div>
@@ -62,4 +47,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default DasboardHeader;
