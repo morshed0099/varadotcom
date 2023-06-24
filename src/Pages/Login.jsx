@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import LoginFrom from '../Components/LoginFrom';
+import Header from '../Components/Header';
 
 const Login = () => {
     const [open, setOpen] = useState(false);
-    const [type,setType]=useState('')
+    const [type, setType] = useState('')
 
-    const hadelBokking=()=>{
+    const hadelBokking = () => {
 
         setType('buyer')
         setOpen(true)
     }
 
-    const handelSeller=()=>{
+    const handelSeller = () => {
         setType('seller')
         setOpen(true)
     }
 
     return (
+
         <div>
+            <Header />
             <div className='relative flex justify-center'>
                 <div className='hidden w-[100%] h-[100vh]  lg:block'>
                     <img className='w-[100%] block h-[100vh]' src="https://i.pinimg.com/originals/37/af/df/37afdf55b42966be547a6b5270aaa876.jpg" alt="" />
@@ -33,7 +36,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <div onClick={()=>setOpen(false)} className={`${open && " flex justify-center items-center absolute top-0 w-full h-full bg-black bg-opacity-40"}`}>
+            <div onClick={() => setOpen(false)} className={`${open && " flex justify-center items-center absolute top-0 w-full h-full bg-black bg-opacity-40"}`}>
                 <div className={` absolute  z-50 ${open ? " top-20 lg:top-[20%] my-auto absolute duration-1000 bg-gray-800" : "top-[-500px]"}`}>
                     <div className='flex justify-end p-1'>
                         <button onClick={() => setOpen(false)} className='text-white  text-3xl font-bold hover:bg-gray-600 duration-500 ease-out  w-12 h-12 text-center  rounded-full '>

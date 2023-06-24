@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
-        errorElement:<ErrorPage />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
@@ -31,10 +31,6 @@ export const router = createBrowserRouter([
                     return fetch(`http//:localhost:3000/${params.id}`)
                 },
                 element: <RentDetails />
-            },
-            {
-                path: '/login',
-                element: <Login />
             },
             {
                 path: '/profile/:id',
@@ -72,9 +68,14 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/myfavourite',
                 element: <MyFavourite />
-            }
+            },
+
         ]
-    }
+    },
+    {
+        path: '/login',
+        element: <Login />
+    },
 ])
 
 
