@@ -35,8 +35,6 @@ const AddPorduct = () => {
         const image = e.target.files[0]
         const formData = new FormData()
         formData.append('image', image)
-        console.log(formData);
-        console.log(process.env.REACT_APP_KEY);
         const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_KEY}`
         fetch(url, {
             method: "POST",
@@ -49,7 +47,35 @@ const AddPorduct = () => {
             })
 
     }
-    console.log(file);
+    const handelimg2 = (e) => {
+        const image = e.target.files[0]
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_KEY}`
+        fetch(url, {
+            method: "POST",
+            body: formData,
+        }).then(res => res.json())
+            .then(data => {
+                const photoURL = data.data.display_url
+                setfile2(photoURL);
+
+            })
+    }
+    const handelimg3 = (e) => {
+        const image = e.target.files[0]
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_KEY}`
+        fetch(url, {
+            method: "POST",
+            body: formData,
+        }).then(res => res.json())
+            .then(data => {
+                const photoURL = data.data.display_url
+                setfile3(photoURL);
+            })
+    }
 
     const handelsubmit = (event) => {
         event.preventDefault()
@@ -63,7 +89,7 @@ const AddPorduct = () => {
         const areaDivison = division
         const areaDistic = distic
         const areaThana = postThana
-        console.log(title, rent, phoneNumber, areaDivison, areaDistic, areaThana)
+        console.log(title,img,img2,img3, rent, phoneNumber, areaDivison, areaDistic, areaThana)
     }
 
     return (
@@ -118,24 +144,29 @@ const AddPorduct = () => {
                         <div>
                             <input onChange={(e) => hadelimg1(e)} name='img1' required type="file" />
                             <div>
-                               {
-                                file ?<img className='w-20 h-20' src={file} alt="" />:<p> upload Image 1</p>
-                               }
-                                
+                                {
+                                    file ? <img className='w-20 h-20' src={file} alt="" /> : <p> upload Image 1</p>
+                                }
+
                             </div>
                         </div>
                         <div>
-                            <input name='img2' required type="file" />
-                            <div className='w-20 mt-2 h-20 border'>
-                                <p>Image 2</p>
-                                <img src="" alt="" />
+                            <input onChange={(e) => handelimg2(e)} name='img2' required type="file" />
+                            <div>
+                                <div>
+                                    {
+                                        file2 ? <img className='w-20 h-20' src={file2} alt="" /> : <p> upload Image 2</p>
+                                    }
+
+                                </div>
                             </div>
                         </div>
                         <div>
-                            <input name='img3' required type="file" />
-                            <div className='w-20 mt-2 h-20 border'>
-                                <p>Image 2</p>
-                                <img src="" alt="" />
+                            <input onChange={(e) => handelimg3(e)} name='img3' required type="file" />
+                            <div>
+                                {
+                                    file3 ? <img className='w-20 h-20' src={file3} alt="" /> : <p> upload Image 1</p>
+                                }
                             </div>
                         </div>
                     </div>

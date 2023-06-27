@@ -22,10 +22,10 @@ const Header = () => {
         }
     }
     return (
-        <div style={{ zIndex: "99" }} className='bg-white sticky top-0'>
-            <div id='navHeader' className='px-4  w-full absolute bg-transparent'>
+        <div style={{ zIndex: "40" }} className='bg-white sticky top-0'>
+            <div id='navHeader'  className='px-4 z-40 w-full absolute bg-transparent'>
                 <div className='p-2 '>
-                    <nav className='flex justify-between items-center'>
+                    <nav className='flex z-40 justify-between items-center'>
                         <div>
                             <h1 id='logo' className='text-red-600 text-2xl font-bold'>VaraDotCom</h1>
                             <p id='slogan' className='lg:text-gray-200 text-green-800 font-semibold px-[4px]'>Catch Your Dream</p>
