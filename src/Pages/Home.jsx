@@ -19,8 +19,8 @@ const Home = () => {
             <div className='max-w-[1480px] mx-auto'>
                 <h1 className='text-center text-6xl font-bold  pt-8  pb-4'>Select Your Sweet Home</h1>
                 <div className='p-4 mt-6 z-40 sticky top-20 '>
-                    <div className='hover:overflow-auto'>
-                        <div className='ml-[120px] lg:justify-start justify-evenly items-center flex gap-4'>
+                    <div className='overflow-auto'>
+                        <div className='lg:ml-[10px] ml-[400px] lg:justify-start justify-evenly items-center flex gap-4'>
                             <SearchBar />
                             <Location />
                             <Calender />

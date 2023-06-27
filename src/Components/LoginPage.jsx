@@ -1,9 +1,14 @@
 import React from 'react';
 
-const LoginPage = ({setopen,stopPropagration}) => {
+const LoginPage = ({setopen,stopPropagration,type}) => {
 
 
-    const handelSubmit=()=>{
+    const handelSubmit=(e)=>{
+      e.preventDefault()
+      const form=e.target
+      const email= form.email.value;
+      const passwoord= form.passwoord.value;
+      console.log(email,passwoord,type);
 
     }
     return (
@@ -22,7 +27,7 @@ const LoginPage = ({setopen,stopPropagration}) => {
                         <lebel className='text-1xl font bold text-white'>Password:</lebel>
                     </div>
                     <div>
-                        <input className='w-full  px-4 py-2 rounded-2xl' type="Pssword" name='password' />
+                        <input className='w-full  px-4 py-2 rounded-2xl' type="Pssword" name='passwoord' />
                     </div>
                     <div>
                         <button className='px-20 w-full py-3 bg-green-600 hover:bg-green-800 duration-500 ease-out text-white'>

@@ -37,7 +37,7 @@ const Login = () => {
                 </div>
             </div>
             <div onClick={() => setOpen(false)} className={`${open && " z-50 py-6 flex justify-center  items-center absolute top-0 w-full h-[100%]  bg-black bg-opacity-60 "}`}>
-                <div className={` absolute  z-50 ${open ? " top-5  lg:top-[5%] my-auto absolute duration-1000 bg-gray-800" : "top-[-600px]"}`}>
+                <div className={` absolute  z-50 ${open ? " top-5  lg:top-[5%] my-auto absolute duration-500 bg-gray-800" : "top-[-700px]"}`}>
                     <div className='flex justify-end p-1'>
                         <button onClick={() => setOpen(false)} className='text-white z-50  text-3xl font-bold hover:bg-gray-600 duration-500 ease-out  w-12 h-12 text-center  rounded-full '>
                             <span>x</span>
