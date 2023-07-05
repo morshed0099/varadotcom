@@ -7,7 +7,7 @@ const MyaddedProduct = () => {
     const { user } = useContext(userAuth)
 
     const url = `http://localhost:5000/addedporduct/${user?.uid}`
-    const { data: myadded = [],refetch } = useQuery({
+    const { data: myadded = [], refetch } = useQuery({
         queryKey: ['myadded', user?.uid],
         queryFn: async () => {
             const res = await fetch(url)
@@ -16,20 +16,34 @@ const MyaddedProduct = () => {
         }
 
     })
-  
 
-  const handelPublish=(id)=>{
-    fetch(`http://localhost:5000/publisrent/${id}`,{
-        method:"PUT",
-        headers:{"content-type":"application/json"},
-        body:JSON.stringify({publish:true})
-    }).then(res=>res.json()).then(data=>{
-        if(data.matchedCount> 0){
-            refetch()
+
+    const handelPublish = (id) => {
+        fetch(`http://localhost:5000/publisrent/${id}`, {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ publish: true })
+        }).then(res => res.json()).then(data => {
+            if (data.matchedCount > 0) {
+                refetch()
+            }
+        })
+    }
+    const handelDelete = (id) => {
+        const yes = window.confirm('are you sure ? delete  product')
+        if (yes) {
+            fetch(`http://localhost:5000/rent/delete/${id}`,{
+                method:"DELETE",
+                headers:{"content-type":"application/json"}
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.deletedCount>0){
+                        refetch()
+                    }
+                })
         }
-    })
-  }
-
+    }
     return (
         <div>
             <div class="flex flex-col overflow-x-auto lg:overflow-hidden  ">
@@ -55,10 +69,10 @@ const MyaddedProduct = () => {
                                                 <td class="whitespace-nowrap px-6 py-4">{added.title}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">{added.rent}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">
-                                                    <Link to={`/dashboard/update/${added._id}`}> <button className='px-2 py-1 mr-1 bg-green-600 text-white rounded-xl'>edit</button></Link>
-                                                    <button className='px-2 py-1 bg-red-500 text-white rounded-xl mr-1'>Delete</button>
-                                                    <button onClick={()=>handelPublish(added._id)} className='px-2 py-1 bg-gray-800 text-white rounded-xl '>
-                                                       {added.publish ? "published" : "publish"}
+                                                    <Link to={`/dashboard/update/${added._id}`}> <button className='px-2 py-1 font-medium mr-1 bg-green-600 text-white rounded-xl'>edit</button></Link>
+                                                    <button onClick={() => handelDelete(added._id)} className='px-2 py-1 bg-red-500 text-white font-medium rounded-xl mr-1'>Delete</button>
+                                                    <button onClick={() => handelPublish(added._id)} className='px-2 py-1 font-medium bg-gray-800 text-white rounded-xl '>
+                                                        {added.publish ? "published" : "publish"}
                                                     </button>
                                                 </td>
                                             </tr>

@@ -59,6 +59,8 @@ const HomeRent = ({ rents }) => {
                                 setopen={setopen}
                                 handelAnimation={handelAnimation}
                                 open={open}
+                                rents={rents}
+                                key={rents._id}
                             />
                         }
                     </div>

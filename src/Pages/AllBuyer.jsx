@@ -10,6 +10,34 @@ const AllBuyer = () => {
             return data;
         }
     })
+
+    const handelDelete = (id) => {
+        const yes = window.confirm('are you sure delete user ?')
+        if (yes) {
+            fetch(`http://localhost:5000/detele/user/${id}`, {
+                method: "DELETE",
+                headers: { 'content-type': "application/json" }
+            }).then(res => res.json())
+                .then(data => {
+                    if(data.deletedCount>0){
+                        refetch()
+                    }
+                })
+        }
+    }
+
+    const hadelVerify=(id)=>{
+        fetch(`http://localhost:5000/user/verify/${id}`,{
+            method:"PUT",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify()
+        }).then(res=>res.json())
+        .then(data=>{
+            if(data.modifiycount>0){
+                refetch()
+            }
+        })
+    }
     console.log(buyers);
     return (
         <div>
@@ -36,8 +64,8 @@ const AllBuyer = () => {
                                             <td className="whitespace-nowrap px-6 py-4">{buyer.name}</td>
                                             <td className="whitespace-nowrap px-6 py-4">{buyer.userRoll}</td>
                                             <td className="whitespace-nowrap px-6 py-4">
-                                                <button className='text-white font-medium px-2 py-1 mr-2 rounded-2xl bg-green-800'>Delete</button>
-                                                <button className='text-white font-medium px-2 py-1  rounded-2xl bg-red-800'>Verify</button>
+                                                <button onClick={() => handelDelete(buyer._id)} className='text-white font-medium px-2 py-1 mr-2 rounded-2xl bg-green-800'>Delete</button>
+                                                <button onClick={()=>hadelVerify(buyer._id)} className='text-white font-medium px-2 py-1  rounded-2xl bg-red-800'>Verify</button>
                                             </td>
                                         </tr>)
                                     }

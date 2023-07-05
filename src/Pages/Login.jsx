@@ -21,18 +21,18 @@ const Login = () => {
 
         <div>
             <Header />
-            <div className='relative flex justify-center'>
+            <div className='relative  flex justify-center'>
                 <div className=' w-[100%]'>
-                    <img className='w-[100%] md:h-[900px] sm:h-[600px]' src="https://i.pinimg.com/originals/37/af/df/37afdf55b42966be547a6b5270aaa876.jpg" alt="" />
+                    <img className='w-[100%]    md:h-[900px] sm:h-[600px]' src="https://i.pinimg.com/originals/37/af/df/37afdf55b42966be547a6b5270aaa876.jpg" alt="" />
                 </div>
-                <div className='absolute w-full top-0 bg-black  h-full  bg-opacity-75'></div>
+                <div className='absolute   w-full top-0 bg-black lg:bg-opacity-75 h-full'></div>
 
-                <div className='absolute top-[200px] lg:top-[200px] '>
-                    <h2 className='text-2xl font-bold my-8 text-center text-white'>For Booking And Selling Appirtment</h2>
-                    <h4 className='text-center text-6xl mb-8 font-semibold text-gray-100 '>Create Accaount</h4>
+                <div className='w-full px-4 lg:bg-transparent bg-black absolute  top-[200px] lg:top-[200px] '>
+                    <h2 className='lg:text-2xl md:text-1xl  font-bold my-8 text-center text-white'>For Booking And Selling Appirtment</h2>
+                    <h4 className='text-center lg:text-6xl md:text-3xl text-2xl mb-8 font-semibold text-gray-100 '>Create Accaount</h4>
                     <div className='flex lg:flex-row flex-col gap-4 justify-center '>
-                        <button onClick={() => hadelBokking()} className='px-20 py-4 text-2xl font-bold text-white border hover:bg-green-700 duration-1000  hover: ease-linear border-gray-600'>Booking Accaount</button>
-                        <button onClick={() => handelSeller()} className='px-20 py-4 text-2xl font-bold text-white border hover:bg-green-700 duration-1000  hover: ease-linear border-gray-600'>Selling Accaount</button>
+                        <button onClick={() => hadelBokking()} className='lg:px-20 px-8  lg:py-4 py-2  lg:text-2xl text-1xl font-bold text-white border hover:bg-green-700 duration-1000  hover: ease-linear border-gray-600'>Booking Accaount</button>
+                        <button onClick={() => handelSeller()} className='lg:px-20 px-8 lg:py-4  py-2 lg:text-2xl 1xl font-bold text-white border hover:bg-green-700 duration-1000  hover: ease-linear border-gray-600'>Selling Accaount</button>
                     </div>
                 </div>
                 <div onClick={() => setOpen(false)} className={`${open && " flex justify-center items-center absolute w-full top-0 bg-black  h-full  bg-opacity-60 "}`}>

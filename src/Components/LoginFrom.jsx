@@ -83,7 +83,8 @@ const LoginFrom = ({ type }) => {
                 passwoord,
                 name,
                 userRoll,
-                photoURL
+                photoURL,
+                varify:false
             }
             const user = userInfo
             fetch('http://localhost:5000/user', {

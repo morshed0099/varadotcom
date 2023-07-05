@@ -38,7 +38,7 @@ const DasboradLayout = () => {
                                     </>
                                 }
                                 {
-                                    isBuyer && <NavLink to='/dashboard/myfavourite'>My Favorite</NavLink>
+                                    isBuyer && <NavLink to='/dashboard/myfavourite'>My Bokking</NavLink>
                                 }
 
                             </div>
