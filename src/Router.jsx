@@ -13,6 +13,7 @@ import Dasborad from './Pages/Dasborad';
 import AllBuyer from './Pages/AllBuyer';
 import MyFavourite from './Components/MyFavourite';
 import ErrorPage from './Components/ErrorPage';
+import UpdateRent from './Components/UpdateRent';
 
 
 export const router = createBrowserRouter([
@@ -35,10 +36,11 @@ export const router = createBrowserRouter([
             {
                 path: '/profile/:id',
                 loader: async ({ params }) => {
-                    return fetch(`http//:localhost:3000/${params.id}`)
+                    return fetch(`http//:localhost:3000/profile/${params.id}`)
                 },
                 element: <UserProfile />
-            }
+            },
+         
         ]
     },
     {
@@ -69,7 +71,14 @@ export const router = createBrowserRouter([
                 path: '/dashboard/myfavourite',
                 element: <MyFavourite />
             },
-
+            {
+                path:'/dashboard/update/:id',
+                loader:async({params})=>{
+                    return await fetch(`http://localhost:5000/dasboard/update/${params.id}`)
+                },
+                element:<UpdateRent />
+            }
+         
         ]
     },
     {

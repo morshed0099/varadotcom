@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import DasboardHeader from './Components/DasboardHeader';
+import useAdmin from './hooks/useAdmin';
+import { userAuth } from './AuthProvider';
+import useBuyer from './hooks/useBuyer';
+import useSeller from './hooks/useSeller';
 
 const DasboradLayout = () => {
     const [open, setOpen] = useState(false)
-    console.log(open);
+    const { user } = useContext(userAuth)
+    const [isAdmin, isAdminLoader] = useAdmin(user?.displayName)
+    const [isBuyer, isBuyerLoader] = useBuyer(user?.displayName)
+    const [isSeller, isSellerLoader] = useSeller(user?.displayName)
+
+    console.log(isAdmin, isBuyer, isSeller,);
     return (
         <div>
             <div className='flex'>
@@ -15,11 +24,23 @@ const DasboradLayout = () => {
                         </div>
                         <div className='fixed'>
                             <div className='h-[1000px] my-8 w-[170px] lg:mt-4 flex flex-col gap-4'>
-                                <NavLink onClick={() => setOpen(false)} to='/dashboard/addproduct'>Add product</NavLink>
-                                <NavLink to='/dashboard/myaddedproduct'>MyAddedProducts</NavLink>
-                                <NavLink to='/dashboard/allseller'>AllSeller</NavLink>
-                                <NavLink to='/dashboard/allbuyer'>AllBuyer</NavLink>
-                                <NavLink to='/dashboard/myfavourite'>My Favorite</NavLink>
+                                {
+                                    isSeller && <>
+                                        <NavLink onClick={() => setOpen(false)} to='/dashboard/addproduct'>Add product</NavLink>
+                                        <NavLink to='/dashboard/myaddedproduct'>MyAddedProducts</NavLink>
+                                    </>
+                                }
+
+                                {
+                                    isAdmin && <>
+                                        <NavLink to='/dashboard/allseller'>AllSeller</NavLink>
+                                        <NavLink to='/dashboard/allbuyer'>AllBuyer</NavLink>
+                                    </>
+                                }
+                                {
+                                    isBuyer && <NavLink to='/dashboard/myfavourite'>My Favorite</NavLink>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -27,7 +48,7 @@ const DasboradLayout = () => {
                 <div className='flex-1 p-4'>
                     <div className='flex items-center'>
                         <div className={`lg:hidden w-10 block ${open ? "hidden" : "block "}`}>
-                            <button onClick={()=>setOpen(true)}>Open</button>
+                            <button onClick={() => setOpen(true)}>Open</button>
                         </div>
                         <div className='flex-1'>
                             <DasboardHeader />

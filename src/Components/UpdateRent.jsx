@@ -1,17 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { userAuth } from '../AuthProvider';
 
-const AddPorduct = () => {
-    const [division, setDivision] = useState('Dhaka')
+const UpdateRent = () => {
+    const data = useLoaderData()
+    console.log(data);
+    const [division, setDivision] = useState(data?.areaDivison)
     const [allDivision, setAllDivision] = useState([])
-    const [distic, setDistic] = useState('')
-    const [postThana, setPostThana] = useState('')
+    const [distic, setDistic] = useState(data?.areaDistic)
+    const [postThana, setPostThana] = useState(data?.areaThana)
     const [value, setValue] = useState([])
     const [thana, setThana] = useState([])
 
-    const [file, setfile] = useState()
-    const [file2, setfile2] = useState()
-    const [file3, setfile3] = useState()
+    const [file, setfile] = useState(data.img)
+    const [file2, setfile2] = useState(data.img2)
+    const [file3, setfile3] = useState(data.img3)
 
     const [loading, setLoading] = useState(false)
 
@@ -29,7 +32,7 @@ const AddPorduct = () => {
             .then(data => setAllDivision(data.data))
     }, [])
 
-
+    console.log(division)
 
     const hadelDisitic = (e) => {
         let upozela = (value.find(v => v.district === e.target.value))
@@ -85,6 +88,7 @@ const AddPorduct = () => {
     const handelsubmit = (event) => {
         event.preventDefault()
         setLoading(true)
+        const _id = data._id;
         const form = event.target
         const title = form.title.value
         const rent = form.rent.value;
@@ -99,21 +103,22 @@ const AddPorduct = () => {
         const sellerId = user?.uid
 
         const rentDetails = {
-           publish:false, title, img, img2, img3, rent, phoneNumber, areaDivison, areaDistic, areaThana, sellerName, sellerId
+            _id, title, img, img2, img3, rent, phoneNumber, areaDivison, areaDistic, areaThana, sellerName, sellerId
         }
-        fetch('http://localhost:5000/rentadd', {
-            method: "POST",
+        fetch('http://localhost:5000/rent/update', {
+            method: "PATCH",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(rentDetails)
         }).then(res => res.json())
             .then(data => {
-                if(data.acknowledged){
-                     setLoading(false)
-                     form.reset()
-                }else{
+                if (data.acknowledged) {
                     setLoading(false)
-                }}
-                )
+                    form.reset()
+                } else {
+                    setLoading(false)
+                }
+            }
+            )
 
     }
 
@@ -128,19 +133,19 @@ const AddPorduct = () => {
                         <p className='text-black mb-2 mt-2'> Your Title </p>
                     </div>
                     <div>
-                        <input required name='title' type="text" placeholder='example 2 bedroom and 1 washroom  ' className='px-4 py-2 w-full mb-2 border rounded-2xl' />
+                        <input defaultValue={data.title} required name='title' type="text" placeholder='example 2 bedroom and 1 washroom  ' className='px-4 py-2 w-full mb-2 border rounded-2xl' />
                     </div>
                     <div>
                         <p className='text-black mb-2 mt-2'>Select Your Area </p>
                     </div>
                     <select required onChange={(e) => setDivision(e.target.value)} className='px-4 py-2 border mr-2' name="" id="">
-                        <option value="" selected disabled>select Division</option>
+                        <option value={data.areaDivison} selected >{data.areaDivison}</option>
                         {
                             allDivision.map((d, idx) => <option key={idx} value={d.division}>{d.division}</option>)
                         }
                     </select>
                     <select required onChange={(e) => hadelDisitic(e)} className='px-4 py-2 border '>
-                        <option value="" selected disabled>select distic </option>
+                        <option value={data.areaDistic} selected >{data.areaDistic}</option>
                         {
                             value.map((v, idx) =>
                                 <option value={v.district} key={idx}>{v.district}</option>
@@ -148,7 +153,7 @@ const AddPorduct = () => {
                         }
                     </select>
                     <select required onChange={(e) => setPostThana(e.target.value)} className='px-4 py-2 border ml-2'>
-                        <option value="" selected disabled>select thana </option>
+                        <option value={data.areaThana} selected >{data.areaThana}</option>
                         {
                             thana.upazilla?.map((up, idx) => <option value={up} key={idx}>{up}</option>)
                         }
@@ -157,17 +162,17 @@ const AddPorduct = () => {
                         <p className='text-black mb-2 mt-4'> Your Rent </p>
                     </div>
                     <div>
-                        <input required name='rent' type="text" placeholder='set you rent $ ' className='px-4 py-2 w-full mb-2 border rounded-2xl ' />
+                        <input defaultValue={data.rent} required name='rent' type="text" placeholder='set you rent $ ' className='px-4 py-2 w-full mb-2 border rounded-2xl ' />
                     </div>
                     <div>
                         <p className='text-black mb-2 mt-4'> Your Phone Number </p>
                     </div>
                     <div>
-                        <input required name='phoneNumber' type="text" placeholder='enter your phone number' className='px-4 py-2 w-full mb-2 border rounded-2xl ' />
+                        <input defaultValue={data.phoneNumber} required name='phoneNumber' type="text" placeholder='enter your phone number' className='px-4 py-2 w-full mb-2 border rounded-2xl ' />
                     </div>
                     <div className='flex lg:flex-row flex-col gap-2 border p-2 rounded-2xl mt-2 mb-2'>
                         <div>
-                            <input onChange={(e) => hadelimg1(e)} name='img1' required type="file" />
+                            <input onChange={(e) => hadelimg1(e)} name='img1' type="file" />
                             <div>
                                 {
                                     file ? <img className='w-20 h-20' src={file} alt="" /> : <p> upload Image 1</p>
@@ -176,7 +181,7 @@ const AddPorduct = () => {
                             </div>
                         </div>
                         <div>
-                            <input onChange={(e) => handelimg2(e)} name='img2' required type="file" />
+                            <input onChange={(e) => handelimg2(e)} name='img2' type="file" />
                             <div>
                                 <div>
                                     {
@@ -187,7 +192,7 @@ const AddPorduct = () => {
                             </div>
                         </div>
                         <div>
-                            <input onChange={(e) => handelimg3(e)} name='img3' required type="file" />
+                            <input onChange={(e) => handelimg3(e)} name='img3' type="file" />
                             <div>
                                 {
                                     file3 ? <img className='w-20 h-20' src={file3} alt="" /> : <p> upload Image 1</p>
@@ -198,7 +203,7 @@ const AddPorduct = () => {
                 </div>
                 <div>
                     <button className='px-4 w-full py-2 bg-green-600 text-white  hover:bg-green-900 duration-700 ease-in rounded-2xl mt-2'>{
-                        loading ? "please wait " : "save"
+                        loading ? "please wait " : "Update"
                     }</button>
                 </div>
             </form>
@@ -208,4 +213,4 @@ const AddPorduct = () => {
     );
 };
 
-export default AddPorduct;
+export default UpdateRent;

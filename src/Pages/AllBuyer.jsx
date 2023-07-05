@@ -1,28 +1,46 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 
 const AllBuyer = () => {
+    const { data: buyers = [], refetch } = useQuery({
+        queryKey: ['buyers'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/user/allbuyer')
+            const data = await res.json()
+            return data;
+        }
+    })
+    console.log(buyers);
     return (
         <div>
-            <div class="flex flex-col overflow-x-auto lg:overflow-hidden  ">
-                <div class="sm:-mx-6 lg:-mx-8">
-                    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full  text-left text-sm font-light">
-                                <thead class="border-b border font-medium dark:border-neutral-500">
+            <div className="flex flex-col overflow-x-auto lg:overflow-hidden  ">
+                <div className="sm:-mx-6 lg:-mx-8">
+                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full  text-left text-sm font-light">
+                                <thead className="border-b border font-medium dark:border-neutral-500">
                                     <tr>
-                                        <th scope="col" class="px-6 py-4">#</th>
-                                        <th scope="col" class="px-6 py-4">Heading</th>
-                                        <th scope="col" class="px-6 py-4">Heading</th>
-                                        <th scope="col" class="px-6 py-4">Heading</th>
+                                        <th scope="col" className="px-6 py-4">Image</th>
+                                        <th scope="col" className="px-6 py-4">Name</th>
+                                        <th scope="col" className="px-6 py-4">Roll</th>
+                                        <th scope="col" className="px-6 py-4">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="border-b border dark:border-neutral-500">
-                                        <td class="whitespace-nowrap px-6 py-4 font-medium">1</td>
-                                        <td class="whitespace-nowrap px-6 py-4">Cell</td>
-                                        <td class="whitespace-nowrap px-6 py-4">Cell</td>
-                                        <td class="whitespace-nowrap px-6 py-4">Cell</td>
-                                    </tr>
+                                    {
+                                        buyers.map(buyer => <tr className="border-b border dark:border-neutral-500">
+
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                                <img className='w-10 h-10 rounded-full' src={buyer.photoURL} alt="" />
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4">{buyer.name}</td>
+                                            <td className="whitespace-nowrap px-6 py-4">{buyer.userRoll}</td>
+                                            <td className="whitespace-nowrap px-6 py-4">
+                                                <button className='text-white font-medium px-2 py-1 mr-2 rounded-2xl bg-green-800'>Delete</button>
+                                                <button className='text-white font-medium px-2 py-1  rounded-2xl bg-red-800'>Verify</button>
+                                            </td>
+                                        </tr>)
+                                    }
                                 </tbody>
                             </table>
                         </div>

@@ -8,9 +8,20 @@ import SearchBar from '../Components/SearchBar';
 import HotDeal from '../Components/HotDeal';
 import Disclaimer from '../Components/Disclaimer';
 import TrustedDeveloper from '../Components/TrustedDeveloper';
+import { useQuery } from 'react-query';
 
 
 const Home = () => {
+
+    const {data:adHomeRent=[]}=useQuery({        
+        queryKey:["adHomeRent"],
+        queryFn:async ()=>{
+            const res=await fetch('http://localhost:5000/publishrent')
+            const data=await res.json()
+            return data;
+                }
+    })
+
     return (
         <div className=''>
             <div className='mx-auto mb-30 '>
@@ -29,16 +40,13 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='px-4 gap-6 grid grid-cols-1 mt-6  md:grid-cols-2 lg:grid-cols-3'>
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
-                    <HomeRent />
+                   
+                   {
+                    adHomeRent.map(rents=>
+                        <HomeRent rents={rents} key={rents._id}  />
+                        )
+                   } 
+                   
                 </div>
 
                 <div className='px-4'>

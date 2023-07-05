@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FcMenu } from 'react-icons/fc';
 import { IoMdClose } from 'react-icons/io';
+import { userAuth } from '../AuthProvider';
 
 const Header = () => {
     const [open, setOpen] = useState(!true)
 
+    const { user,logout } = useContext(userAuth)
+
+    console.log(user,'12');
+
+    const hadelLogout=()=>{
+        logout()
+        .then(()=>{
+
+        }).catch(error=>console.error(error))
+    }
 
     window.onscroll = function () { scrollFunction() };
 
@@ -23,7 +34,7 @@ const Header = () => {
     }
     return (
         <div style={{ zIndex: "40" }} className='bg-white sticky top-0'>
-            <div id='navHeader'  className='px-4 z-40 w-full absolute bg-transparent'>
+            <div id='navHeader' className='px-4 z-40 w-full absolute bg-transparent'>
                 <div className='p-2 '>
                     <nav className='flex z-40 justify-between items-center'>
                         <div>
@@ -43,7 +54,9 @@ const Header = () => {
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/news'>News</NavLink>
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/developer'>Developer</NavLink>
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/dashboard'>Dasborad</NavLink>
-                            <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                            {
+                                user ? <button onClick={hadelLogout} className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out'>Logout</button> : <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                            }
                         </div>
                     </nav>
                 </div>
@@ -54,7 +67,9 @@ const Header = () => {
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/news'>News</NavLink>
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/developer'>Developer</NavLink>
                         <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/dashboard'>Dasborad</NavLink>
-                        <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                        {
+                            user ? <button onClick={hadelLogout} className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out'>Logout</button> : <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                        }
                     </div>
                 </div>
             </div>

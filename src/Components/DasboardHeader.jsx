@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FcMenu } from 'react-icons/fc';
 import { IoMdClose } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
+import { userAuth } from '../AuthProvider';
 
 const DasboardHeader = () => {
 
     const [open, setOpen] = useState(false)
+    const { user, logout } = useContext(userAuth)
+
+    const hadelLogout = () => {
+        logout()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <div style={{ zIndex: "99" }} className='bg-white '>
             <div className='px-4  w-full  '>
                 <div className='p-2 '>
                     <nav className='flex justify-between items-center'>
                         <div>
-                            <h1  className='text-red-600 text-2xl font-bold'>VaraDotCom</h1>
-                            <p  className='lg:text-gray-400 text-green-800 font-semibold px-[4px]'>Catch Your Dream</p>
+                            <h1 className='text-red-600 text-2xl font-bold'>VaraDotCom</h1>
+                            <p className='lg:text-gray-400 text-green-800 font-semibold px-[4px]'>Catch Your Dream</p>
                         </div>
                         <div className='block lg:hidden'>
                             <button onClick={() => setOpen(!open)}>
@@ -28,7 +36,9 @@ const DasboardHeader = () => {
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/news'>News</NavLink>
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/developer'>Developer</NavLink>
                             <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/dashboard'>Dasborad</NavLink>
-                            <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                            {
+                                user ? <button onClick={hadelLogout} className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out'>Logout</button> : <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                            }
                         </div>
                     </nav>
                 </div>
@@ -39,7 +49,9 @@ const DasboardHeader = () => {
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/news'>News</NavLink>
                         <NavLink className='w-full bg-gray-300 text-center rounded-md  text-gray-950' to='/developer'>Developer</NavLink>
                         <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/dashboard'>Dasborad</NavLink>
-                        <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                        {
+                            user ? <button onClick={hadelLogout} className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out'>Logout</button> : <NavLink className='hover:text-red-500 text-gray-950 duration-1000 ease-in-out' to='/login'>Login</NavLink>
+                        }
                     </div>
                 </div>
             </div>
