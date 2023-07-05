@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 const AllSeller = () => {
 
-    const { data: sellers = [], } = useQuery({
+    const { data: sellers = [], refetch} = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/user/allseller')
@@ -11,6 +11,33 @@ const AllSeller = () => {
             return data
         }
     })
+    const hadelVerify=(id)=>{
+        fetch(`http://localhost:5000/user/verify/${id}`,{
+            method:"PUT",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify()
+        }).then(res=>res.json())
+        .then(data=>{
+            if(data.modifiycount>0){
+                refetch()
+            }
+        })
+    }
+    console.log(sellers);
+    const handelDelete = (id) => {
+        const yes = window.confirm('are you sure delete user ?')
+        if (yes) {
+            fetch(`http://localhost:5000/detele/user/${id}`, {
+                method: "DELETE",
+                headers: { 'content-type': "application/json" }
+            }).then(res => res.json())
+                .then(data => {
+                    if(data.deletedCount>0){
+                        refetch()
+                    }
+                })
+        }
+    }
     console.log(sellers);
     return (
         <div>
@@ -37,8 +64,13 @@ const AllSeller = () => {
                                                 <td class="whitespace-nowrap px-6 py-4">{seller.name}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">{seller.userRoll}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">
-                                                    <button className='px-2 py-1 rounded-2xl mr-2 font-medium bg-green-600 text-white'>Delete</button>
-                                                    <button className='px-2 py-1 rounded-2xl bg-red-600 font-medium text-white'>Verify</button>
+                                                    <button onClick={()=>handelDelete(seller?._id)} className='px-2 py-1 rounded-2xl mr-2 font-medium bg-green-600 text-white'>Delete</button>
+                                                    <button onClick={()=>hadelVerify(seller?._id)} className='px-2 py-1 rounded-2xl bg-red-600 font-medium text-white'>
+                                                       {
+                                                        seller?.varify ?"Verifyed":"verify"
+                                                       } 
+                                                        
+                                                    </button>
                                                 </td>
                                            </tr>
                                         )

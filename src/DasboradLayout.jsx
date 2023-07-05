@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import DasboardHeader from './Components/DasboardHeader';
+import {RxDashboard} from 'react-icons/rx'
 import useAdmin from './hooks/useAdmin';
 import { userAuth } from './AuthProvider';
 import useBuyer from './hooks/useBuyer';
@@ -48,7 +49,9 @@ const DasboradLayout = () => {
                 <div className='flex-1 p-4'>
                     <div className='flex items-center'>
                         <div className={`lg:hidden w-10 block ${open ? "hidden" : "block "}`}>
-                            <button onClick={() => setOpen(true)}>Open</button>
+                            <button onClick={() => setOpen(true)}>
+                                <RxDashboard className='text-2xl text-green-500' />
+                            </button>
                         </div>
                         <div className='flex-1'>
                             <DasboardHeader />

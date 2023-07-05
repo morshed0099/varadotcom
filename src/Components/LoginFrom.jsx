@@ -33,10 +33,10 @@ const LoginFrom = ({ type }) => {
             })
         }
 
-        const handelSubmit = (e) => {
+        const   handelSubmit  = (e) => {
             e.preventDefault()
             const form = e.target
-            const name = form.name.value;
+            const name =  form.name.value;
             const email = form.email.value;
             const password = form.passwoord.value;
             const userRoll = type
@@ -45,6 +45,7 @@ const LoginFrom = ({ type }) => {
             createUserWithEmail(email, password)
                 .then(result => {
                     const user = result.user
+                    const uid=result.user.uid
                     const updateData = {
                         displayName: name,
                         photoURL: file
@@ -52,7 +53,7 @@ const LoginFrom = ({ type }) => {
                     updateUser(updateData)
                         .then(() => {
                             setUser(user);
-                            createUser(email, password, name, userRoll, file)
+                            createUser(email, password, name, userRoll, file, uid)
                         }).catch(error => {
                             console.error(error)
                         })
@@ -65,7 +66,7 @@ const LoginFrom = ({ type }) => {
                 .then(result => {
                     const user = result.user
                     console.log(user);
-                    createUser(user.email, user.password, user.displayName, userRoll, user.photoURL)
+                    createUser(user.email, user.password, user.displayName, userRoll, user.photoURL,user.uid)
                 }).catch(error => console.error(error))
         }
 
@@ -73,17 +74,18 @@ const LoginFrom = ({ type }) => {
             createuserFacebook()
                 .then(result => {
                     const user = result.user
-                    createUser(user.email, user.password, user.displayName, userRoll, user.photoURL)
+                    createUser(user.email, user.password, user.displayName, userRoll, user.photoURL,user.uid)
                 }).catch(error => console.error(error))
         }
 
-        const createUser = (email, passwoord, name, userRoll, photoURL) => {
+        const createUser = (email, passwoord, name, userRoll, photoURL,uid) => {
             const userInfo = {
                 email,
                 passwoord,
                 name,
                 userRoll,
                 photoURL,
+                uid,
                 varify:false
             }
             const user = userInfo

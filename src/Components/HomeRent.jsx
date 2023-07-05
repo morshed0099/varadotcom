@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BookNowModal from './BookNowModal';
 import { userAuth } from '../AuthProvider';
@@ -6,12 +6,18 @@ import { userAuth } from '../AuthProvider';
 const HomeRent = ({ rents }) => {
     const { user } = useContext(userAuth)
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${user?.uid}`)
+            .then(res=>res.json)
+            .then(data=>console.log(data));
+    }, [])
+
     const [open, setopen] = useState(false)
     const handelAnimation = () => {
         setopen(false)
     }
     const { areaDivison, areaThana, img, img2, img3, phoneNumber, rent, sellerId, sellerName, title, _id } = rents
-
+    console.log(user?.userRoll);
     return (
         <>
             <div className='p-4 border  hover:shadow hover:bg-gray-100 hover:scale-105 hover:border-gray-600 duration-300 ease-out shadow-md rounded-xl'>
@@ -45,9 +51,11 @@ const HomeRent = ({ rents }) => {
                     </div>
                 </div>
                 {
-                    user?.uid === sellerId ?<Link to={`/dashboard/update/${_id}`}> <button className='text-green-600 font-medium'>Edit </button></Link> : <div className='flex justify-between items-center'>
+                    user?.uid === sellerId ? <Link to={`/dashboard/update/${_id}`}> <button className='text-green-600 font-medium'>Edit </button></Link> : <div className='flex justify-between items-center'>
                         <Link to={`/details/${_id}`}> <button className='px-6 py-2 rounded-md shadow-md text-white bg-green-800 hover:bg-green-950 hover:shadow border duration-500 ease-in-out'>Details View</button></Link>
-                        <button onClick={() => setopen(true)} className='px-6 py-2  rounded-md shadow-md text-white bg-red-800 hover:bg-red-950 duration-500 ease-in-out'>Book Now</button>
+                        {
+                            user?.userRoll === "seller" ? "" : <button onClick={() => setopen(true)} className='px-6 py-2  rounded-md shadow-md text-white bg-red-800 hover:bg-red-950 duration-500 ease-in-out'>Book Now</button>
+                        }
                     </div>
                 }
             </div>
