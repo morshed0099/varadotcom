@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import LoginPage from './LoginPage';
 import { userAuth } from '../AuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -10,6 +11,10 @@ const LoginFrom = ({ type }) => {
     let userRoll = type
     const [open, setopen] = useState(false)
     const [file, setfile] = useState('')
+
+    let navigate=useNavigate()
+    let location=useLocation()
+    const from =location.state?.from?.pathname || '/'
 
     const { createUserWithEmail, createuserGoogle, createuserFacebook, setUser, updateUser } = useContext(userAuth)
     const stopPropagration = (e) => {
@@ -53,6 +58,8 @@ const LoginFrom = ({ type }) => {
                     updateUser(updateData)
                         .then(() => {
                             setUser(user);
+                            form.reset()
+                            navigate(from,{replace:true})
                             createUser(email, password, name, userRoll, file, uid)
                         }).catch(error => {
                             console.error(error)
@@ -66,6 +73,7 @@ const LoginFrom = ({ type }) => {
                 .then(result => {
                     const user = result.user
                     console.log(user);
+                    navigate(from ,{replace:true})
                     createUser(user.email, user.password, user.displayName, userRoll, user.photoURL,user.uid)
                 }).catch(error => console.error(error))
         }
@@ -74,6 +82,7 @@ const LoginFrom = ({ type }) => {
             createuserFacebook()
                 .then(result => {
                     const user = result.user
+                    navigate(from,{replace:true})
                     createUser(user.email, user.password, user.displayName, userRoll, user.photoURL,user.uid)
                 }).catch(error => console.error(error))
         }

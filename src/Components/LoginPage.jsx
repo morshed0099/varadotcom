@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { userAuth } from '../AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const LoginPage = ({ setopen, stopPropagration, type }) => {
-    
-   const navigate=useNavigate()   
+
+    let location = useLocation()
+   const navigate = useNavigate()
+   const from=location.state?.from?.pathname || '/'
     const { singWithEmail } = useContext(userAuth)
     const handelSubmit = (e) => {
         e.preventDefault()
@@ -13,11 +15,11 @@ const LoginPage = ({ setopen, stopPropagration, type }) => {
         const email = form.email.value;
         const passwoord = form.passwoord.value;
         console.log(email, passwoord, type);
-        singWithEmail(email,passwoord)
-        .then(result=>{
-            const user=result.user
-            navigate('/')
-        }).catch(error=>console.error(error))
+        singWithEmail(email, passwoord)
+            .then(result => {
+                const user = result.user
+                navigate(from,{replace:true})      
+            }).catch(error => console.error(error))
 
     }
     return (
