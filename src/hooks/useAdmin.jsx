@@ -6,7 +6,7 @@ const useAdmin=displayName=>{
     const [isAdminLoader,setIsAdminLoader]=useState(true)
     useEffect(()=>{
     if(displayName){
-        fetch(`http://localhost:5000/admin/${displayName}`)
+        fetch(`https://varadotcom-server.vercel.app/admin/${displayName}`)
         .then(res=>res.json())
         .then(data=>{
             setIsAdmin(data.isAdmin)

@@ -8,7 +8,7 @@ const MyFavourite = () => {
     const { data: booking = [], } = useQuery({
         queryKey: ['booking', user?.uid],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/mybooking/${user?.uid}`)
+            const res = await fetch(`https://varadotcom-server.vercel.app/mybooking/${user?.uid}`)
             const data = await res.json()
             return data
         }

@@ -101,7 +101,7 @@ const AddPorduct = () => {
         const rentDetails = {
            publish:false, title, img, img2, img3, rent, phoneNumber, areaDivison, areaDistic, areaThana, sellerName, sellerId
         }
-        fetch('http://localhost:5000/rentadd', {
+        fetch('https://varadotcom-server.vercel.app/rentadd', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(rentDetails)

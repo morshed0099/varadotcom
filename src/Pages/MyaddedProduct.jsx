@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const MyaddedProduct = () => {
     const { user } = useContext(userAuth)
 
-    const url = `http://localhost:5000/addedporduct/${user?.uid}`
+    const url = `https://varadotcom-server.vercel.app/addedporduct/${user?.uid}`
     const { data: myadded = [], refetch } = useQuery({
         queryKey: ['myadded', user?.uid],
         queryFn: async () => {
@@ -19,7 +19,7 @@ const MyaddedProduct = () => {
 
 
     const handelPublish = (id) => {
-        fetch(`http://localhost:5000/publisrent/${id}`, {
+        fetch(`https://varadotcom-server.vercel.app/publisrent/${id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ publish: true })
@@ -32,7 +32,7 @@ const MyaddedProduct = () => {
     const handelDelete = (id) => {
         const yes = window.confirm('are you sure ? delete  product')
         if (yes) {
-            fetch(`http://localhost:5000/rent/delete/${id}`,{
+            fetch(`https://varadotcom-server.vercel.app/rent/delete/${id}`,{
                 method:"DELETE",
                 headers:{"content-type":"application/json"}
             })

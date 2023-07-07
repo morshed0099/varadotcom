@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/update/:id',
                 loader:async({params})=>{
-                    return await fetch(`http://localhost:5000/dasboard/update/${params.id}`)
+                    return await fetch(`https://varadotcom-server.vercel.app/dasboard/update/${params.id}`)
                 },
                 element:<UpdateRent />
             }

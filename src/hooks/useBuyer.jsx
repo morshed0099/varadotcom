@@ -5,7 +5,7 @@ const useBuyer=displayName=>{
     const [isBuyerLoader,setIsBuyerLoader]=useState(true)
     useEffect(()=>{
         if(displayName){
-            fetch(`http://localhost:5000/buyer/${displayName}`)
+            fetch(`https://varadotcom-server.vercel.app/buyer/${displayName}`)
             .then(res=>res.json())
             .then(data=>{
                 setIsBuyer(data.isBuyer)

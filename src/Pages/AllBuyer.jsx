@@ -5,7 +5,7 @@ const AllBuyer = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/user/allbuyer')
+            const res = await fetch('https://varadotcom-server.vercel.app/user/allbuyer')
             const data = await res.json()
             return data;
         }
@@ -14,7 +14,7 @@ const AllBuyer = () => {
     const handelDelete = (id) => {
         const yes = window.confirm('are you sure delete user ?')
         if (yes) {
-            fetch(`http://localhost:5000/detele/user/${id}`, {
+            fetch(`https://varadotcom-server.vercel.app/detele/user/${id}`, {
                 method: "DELETE",
                 headers: { 'content-type': "application/json" }
             }).then(res => res.json())
@@ -27,7 +27,7 @@ const AllBuyer = () => {
     }
 
     const hadelVerify=(id)=>{
-        fetch(`http://localhost:5000/user/verify/${id}`,{
+        fetch(`https://varadotcom-server.vercel.app/user/verify/${id}`,{
             method:"PUT",
             headers:{"content-type":"application/json"},
             body:JSON.stringify()

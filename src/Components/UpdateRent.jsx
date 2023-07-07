@@ -105,7 +105,7 @@ const UpdateRent = () => {
         const rentDetails = {
             _id, title, img, img2, img3, rent, phoneNumber, areaDivison, areaDistic, areaThana, sellerName, sellerId
         }
-        fetch('http://localhost:5000/rent/update', {
+        fetch('https://varadotcom-server.vercel.app/rent/update', {
             method: "PATCH",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(rentDetails)

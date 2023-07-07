@@ -6,13 +6,13 @@ const AllSeller = () => {
     const { data: sellers = [], refetch} = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/user/allseller')
+            const res = await fetch('https://varadotcom-server.vercel.app/user/allseller')
             const data = await res.json()
             return data
         }
     })
     const hadelVerify=(id)=>{
-        fetch(`http://localhost:5000/user/verify/${id}`,{
+        fetch(`https://varadotcom-server.vercel.app/user/verify/${id}`,{
             method:"PUT",
             headers:{"content-type":"application/json"},
             body:JSON.stringify()
@@ -27,7 +27,7 @@ const AllSeller = () => {
     const handelDelete = (id) => {
         const yes = window.confirm('are you sure delete user ?')
         if (yes) {
-            fetch(`http://localhost:5000/detele/user/${id}`, {
+            fetch(`https://varadotcom-server.vercel.app/detele/user/${id}`, {
                 method: "DELETE",
                 headers: { 'content-type': "application/json" }
             }).then(res => res.json())

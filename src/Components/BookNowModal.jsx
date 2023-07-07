@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { userAuth } from '../AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const BookNowModal = ({ setopen, open, handelAnimation, rents }) => {
     const { areaDivison, areaThana, img, img2, img3, phoneNumber: sellerPhoneNumber, rent, sellerId, sellerName, title, _id } = rents
     const date = new Date()
     const { user } = useContext(userAuth)
+    const navigate=useNavigate()
     const handelsubmit = (e) => {
         e.preventDefault()
         const form = e.target
@@ -18,7 +20,8 @@ const BookNowModal = ({ setopen, open, handelAnimation, rents }) => {
             email, address, buyerPhoneNumber, sellerId, sellerName, img, sellerPhoneNumber, areaDivison, postId: _id, title
         }
         setopen(false);
-        fetch('http://localhost:5000/bokking', {
+       if(user){
+        fetch('https://varadotcom-server.vercel.app/bokking', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(bokkingDetails)
@@ -30,7 +33,8 @@ const BookNowModal = ({ setopen, open, handelAnimation, rents }) => {
                   window.alert(data.message)
                 }
             });
-    }
+       }navigate('/login')
+    } 
 
 
     return (
